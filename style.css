@@ -1,0 +1,104 @@
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0d0b96, #4b0596);
+  font-family: "Poppins", sans-serif;
+}
+
+/* custom select wrapper */
+.custom-select {
+  position: relative;
+  width: 250px;
+  cursor: pointer;
+  user-select: none;
+
+  /*remove default mobile select styles */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* selected option */
+.selected {
+  background: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+
+  position: relative;
+}
+
+.selected::after {
+  content: "▼";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #666;
+}
+
+/* dropdown options */
+.options-container {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  background: #dbf8ff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.options-container.active {
+  max-height: 200px;   /* Expandable */
+  opacity: 1;
+  overflow-y: auto;    /* scroll if too many options */
+}
+
+.option {
+  padding: 12px;
+  transition: background 0.2s;
+  background: #fff;    /* solid background to fix mobile glitch */
+}
+
+.option:hover {
+  background: #f1f5f9;
+}
+
+/* mobile responsive css */
+@media (max-width: 600px) {
+  .custom-select {
+    width: 90%;              /* use most of screen */
+  }
+
+  .selected {
+    padding: 14px;
+    font-size: 16px;
+    background: #fff;        /* force white background */
+  }
+
+  .options-container {
+    max-height: 250px;
+    font-size: 16px;
+  }
+
+  .option {
+    padding: 14px;
+    font-size: 16px;
+  }
+}
